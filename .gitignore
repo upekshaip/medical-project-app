@@ -1,0 +1,7 @@
+env
+__pycache__
+.vscode
+test*
+reports
+id
+output
