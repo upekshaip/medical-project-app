@@ -56,3 +56,38 @@ class DB:
         except:
             self.helper.show_warning_popup(AC.INTERNET_ERR_MSG, AC.INTERNET_ERR_WARN)
             return None
+        
+    
+    def get_reports(self, patient_id):
+        try:
+            data = self.db.child(f"{AC.DB_PATH}/reports/{patient_id}").get().val()
+            if type(data) == list:
+                return False
+            
+            elif data:
+                data = dict(data)
+                return data
+            
+            else:
+                return False
+        except:
+            self.helper.show_warning_popup(AC.INTERNET_ERR_MSG, AC.INTERNET_ERR_WARN)
+            return None
+        
+        
+    def get_all_doctors(self):
+        try:
+            data = self.db.child(f"{AC.DB_PATH}/doctors").get().val()
+            if type(data) == list:
+                return False
+            
+            elif data:
+                data = dict(data)
+                return data
+            
+            else:
+                return False
+        except:
+            self.helper.show_warning_popup(AC.INTERNET_ERR_MSG, AC.INTERNET_ERR_WARN)
+            return None
+        

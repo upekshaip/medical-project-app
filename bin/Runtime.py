@@ -16,7 +16,7 @@ class RunTiime():
 
         # DASHBOARD BTNS
         self.app.menu_dash.clicked.connect(lambda: self.process.switch_main_pages("Dashboard", self.app.dashboard))
-        self.app.menu_history.clicked.connect(lambda: self.process.switch_main_pages("History", self.app.history))
+        self.app.menu_history.clicked.connect(lambda: self.process.switch_to_history_page())
         self.app.menu_profile.clicked.connect(lambda: self.process.switch_main_pages("Profile", self.app.profile))
         self.app.menu_settings.clicked.connect(lambda: self.process.switch_main_pages("Settings", self.app.settings))
 

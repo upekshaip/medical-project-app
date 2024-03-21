@@ -91,6 +91,70 @@ class Process:
         self.app.close_patient_session.hide()
         
     
+    def switch_to_history_page(self):
+        self.app.menu_title.setText("Patient History")
+        self.app.doctor_view.setCurrentWidget(self.app.history)
+        
+        if AC.PATIENT_DATA is not None:
+            self.app.history_info.setText("You can add main and sub reports")
+            self.app.new_main_record.show()
+            self.app.treeWidget.show()
+            self.show_history_report()
+
+        else:
+            self.app.history_info.setText("Please select patient on dashboard first. Then come back to see the details")
+            self.app.new_main_record.hide()
+            self.app.treeWidget.hide()
+            
+            
+
+
+    def show_history_report(self):
+        report = self.dbh.get_reports(AC.PATIENT_DATA["uid"])
+        db_doctor_data = self.dbh.get_all_doctors()
+
+        if report and db_doctor_data:
+            self.app.treeWidget.clear()
+            print(report)
+            print(db_doctor_data)
+            self.app.treeWidget.setHeaderLabels(["Topic", "Doctor", "Time", "Action", "Status"])
+            for main_key, main_report in report.items():
+                main_doctor = f'{db_doctor_data[main_report["doctor"]]["first_name"]} {db_doctor_data[main_report["doctor"]]["last_name"]}'
+                main_item = QTreeWidgetItem(self.app.treeWidget, [main_report["topic"], main_doctor, str(main_report["ts"]), "", main_report["status"]])
+                
+                button = QPushButton("View")
+                self.app.treeWidget.setItemWidget(main_item, 3, button)
+                button.clicked.connect(lambda _, report=main_report, key=main_key : self.view_history(report, key))
+                
+                if "content" in main_report.keys():
+                    for sub_key, sub_report in main_report["content"].items():
+                        sub_doctor = f'{db_doctor_data[sub_report["doctor"]]["first_name"]} {db_doctor_data[sub_report["doctor"]]["last_name"]}'
+                        child1 = QTreeWidgetItem(main_item, [sub_report["topic"], sub_doctor, str(sub_report["ts"])])
+                        
+                
+                # for cls in main_report[""]:
+            #         # print(cls)
+            #         class_item = QTreeWidgetItem(teacher_item, [f'    {cls[0]} - grade {cls[1]} - {cls[3]} - {cls[2]}'])
+            #         checkbox = QCheckBox()
+                # self.app.treeWidget.setItemWidget(class_item, 0, checkbox)  # Assuming the checkbox should be in the first column
+
+
+    def view_history(self, report, key):
+        # sub_history
+        self.switch_main_pages("Sub History", self.app.sub_history)
+        for item in report:
+            self.add_label_to_frame(str(item))
+        print(key)
+
+
+    def add_label_to_frame(self, text):
+        label = QLabel(text)
+        label.setAlignment(Qt.AlignCenter)
+        self.app.scroll_frame_sub.addWidget(label)
+
+
+
+    #  CAMERA OPEN FUNCTION
     def open_scanner(self):
         qr_scanner = QRScanner()
         qr_scanner.exec_()

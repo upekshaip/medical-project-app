@@ -1,0 +1,1 @@
+child1 = QTreeWidgetItem(item1, ["Child 1", "Child Value 1"])
