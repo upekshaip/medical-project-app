@@ -1,9 +1,8 @@
 class AppConfig(object):
-    APP_NAME = "College Of Alexandriana - Admin Panel"
-    DB_NAME = "College Of Alexandriana"
+    APP_NAME = "MedSync"
+    DB_NAME = "MedSync"
     DB_PATH = f"app/{DB_NAME}/"
     MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    CLASS_HALLS = ["001", "002", "003", "004", "005", "006", "007", "008", "009", "010"]
     QR_SCANNER = ""
 
     INSTITUTE_ADDRESS = "No.585, Kandy Road, Nittambuwa."
@@ -14,8 +13,6 @@ class AppConfig(object):
     SETTINGS_JSON_PATH = "config/settings.json"
     LOGO_ICO_PATH = "config/logo.ico"
     CAM_INPUT_ID = 0
-    RECEIPT_PRINTER = ""
-    MAIN_PRINTER = ""
 
     # Accounts
     ACCOUNTS = [{"username": "user1", "password": "pass1"}, {"username": "user2", "password": "pass2"}, {"username": "user3", "password": "pass3"}]

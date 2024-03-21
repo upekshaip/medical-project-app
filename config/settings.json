@@ -1,0 +1,22 @@
+{
+  "cam_input_id": 0,
+  "receipt_printer": "XP-58",
+  "main_printer": "EPSON LQ-310",
+  "halls": [
+    "001",
+    "002",
+    "003",
+    "004",
+    "005",
+    "006",
+    "007",
+    "008",
+    "009",
+    "010"
+  ],
+  "accounts": [
+    { "username": "user", "password": "pass" },
+    { "username": "user2", "password": "pass2" },
+    { "username": "user3", "password": "pass3" }
+  ]
+}

@@ -2,11 +2,19 @@
 class Cred:
     
     FIREBASE_CONF = {
-        'apiKey': "AIzaSyBvslb3lOVYHdlv49Gt6ThifNlAuwxURIU",
-        'authDomain': "remote-db-d58c3.firebaseapp.com",
-        'projectId': "remote-db-d58c3",
-        'storageBucket': "remote-db-d58c3.appspot.com",
-        'messagingSenderId': "506546583025",
-        'appId': "1:506546583025:web:f9411727b993cb58f90050",
-        'databaseURL': "https://remote-db-d58c3-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        'apiKey': "AIzaSyACS41aaG0cKiSAUP8JXf5j5nh_4lN1QbM",
+        'authDomain': "medsync-af55a.firebaseapp.com",
+        'projectId': "medsync-af55a",
+        'storageBucket': "medsync-af55a.appspot.com",
+        'messagingSenderId': "93442721481",
+        'appId': "1:93442721481:web:d80fbcdbf12ca9a8cb6f18",
+        'databaseURL': "https://medsync-af55a-default-rtdb.asia-southeast1.firebasedatabase.app/"
     }
+
+# apiKey: "AIzaSyACS41aaG0cKiSAUP8JXf5j5nh_4lN1QbM",
+#   authDomain: "medsync-af55a.firebaseapp.com",
+#   databaseURL: "https://medsync-af55a-default-rtdb.asia-southeast1.firebasedatabase.app",
+#   projectId: "medsync-af55a",
+#   storageBucket: "medsync-af55a.appspot.com",
+#   messagingSenderId: "93442721481",
+#   appId: "1:93442721481:web:d80fbcdbf12ca9a8cb6f18"

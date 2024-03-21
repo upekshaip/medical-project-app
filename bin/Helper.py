@@ -12,7 +12,6 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
 from PyQt5.QtGui import QPixmap, QImage, QDesktopServices, QIcon
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
-import win32print
 import qrcode
 
 class Helper:
@@ -242,103 +241,6 @@ class Helper:
         original_image.save("config/receipt.png")
         os.remove(f"config/{student_id}-qr.png")
 
-    
-
-    def printer_text_main(self, printer_name, text, student_id):
-        # Open a handle to the printer
-        try:
-            printer_handle = win32print.OpenPrinter(printer_name)
-            try:
-                # Start a print job
-                job_info = win32print.StartDocPrinter(printer_handle, 1, (f"Recept - {student_id}", None, "RAW"))
-                win32print.StartPagePrinter(printer_handle)
-
-                # Send the text to the printer
-                win32print.WritePrinter(printer_handle, text.encode('utf-8'))
-
-                # End the print job
-                win32print.EndPagePrinter(printer_handle)
-                win32print.EndDocPrinter(printer_handle)
-
-            finally:
-                # Close the printer handle
-                win32print.ClosePrinter(printer_handle)
-        except Exception as e:
-            self.show_warning_popup("Receipt printer is not setted properly. Please go to the settings and add the Receipt printer. (ex: XP-58)", "Receipt printer not setted!")
-            print(f"Printer err - {(str(e).split(',')[-1].replace(')', ''))}")
-    
-    def create_receipt(self, info, student_id):
-        current_datetime = datetime.now()
-        max_len = 32
-        printer_name = self.get_receipt_printer()
-
-        text_to_print = f'''{"*" * max_len}
-{" " * ((max_len - len("College Of Alexandriana")) // 2)}College Of Alexandriana
-{" " * ((max_len - len("Nittambuwa")) // 2)}Nittambuwa
-
-Student ID: {student_id}
-Date: {current_datetime.date()}
-Time: {current_datetime.strftime('%H:%M:%S')}
-{"*" * max_len}
-'''     
-        
-
-        total = 0
-        for cls in info:
-            teacher = f"{cls['teacher']}"
-            month = f"{cls['month']}"
-            subject = cls["subject"]
-            price = f"{cls['fee']} LKR"
-
-            if cls["fee"] == "Free":
-                price = "Free"
-                total += 0
-            else:
-                price = f"{cls['fee']} LKR"
-                total += int(cls['fee'])
-           
-            text_to_print += f'''
-{teacher}{" " * (max_len - (len(month) + len(teacher)))}{month}
-{subject}{" " * (max_len - (len(subject) + len(price)))}{price}
-'''
-        text_to_print += f'''{"-" * max_len}
-Total:{" " * (max_len - (len(f"{total} LKR") + 6))}{total} LKR
-{"=" * max_len}
-
-
-{" " * ((max_len - len("Thank you! Have a nice day!")) // 2)}Thank you! Have a nice day!
-
-{" " * ((max_len - len("0332052345 / 0776970029")) // 2)}0332052345 / 0776970029
-{" " * ((max_len - len("585, Kandy Road, Nittambuwa.")) // 2)}585, Kandy Road, Nittambuwa.
-
-
-
-
-'''
-        # Print the text
-        self.printer_text_main(printer_name, text_to_print, student_id)
-        self.info(text_to_print.strip())
-        # print(text_to_print)
-
-    def get_printers(self):
-        printers = [printer[2] for printer in win32print.EnumPrinters(2)]
-        return printers
-    
-    def get_receipt_printer(self):
-        if os.path.exists(AC.SETTINGS_JSON_PATH):
-            with open(AC.SETTINGS_JSON_PATH, "r") as jf:
-                data = json.load(jf)
-                return data["receipt_printer"]
-        else:
-            return None
-    
-    def get_main_printer(self):
-        if os.path.exists(AC.SETTINGS_JSON_PATH):
-            with open(AC.SETTINGS_JSON_PATH, "r") as jf:
-                data = json.load(jf)
-                return data["main_printer"]
-        else:
-            return None
         
     def get_cam_input_id(self):
         if os.path.exists(AC.SETTINGS_JSON_PATH):
