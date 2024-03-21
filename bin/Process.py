@@ -16,6 +16,12 @@ from bin.Scanner import QRScanner
 from openpyxl import Workbook
 from PyQt5.QtWidgets import QFrame, QLabel, QScrollArea, QTextBrowser
 from openpyxl.chart import PieChart, Reference
+import sys
+import requests
+from PyQt5.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QWidget, QTreeWidgetItem, QTextBrowser
+from PyQt5.QtGui import QPixmap
+from io import BytesIO
+import webbrowser
 
 class Process:
     def __init__(self, app):
@@ -144,6 +150,9 @@ class Process:
 
         # sub_history_tree
         self.app.sub_history_tree.clear()
+        self.app.sub_history_tree.setColumnWidth(0, 600)
+        self.app.sub_history_tree.setColumnWidth(1, 400)
+        self.app.sub_history_tree.setColumnWidth(2, 300)
         self.app.sub_history_tree.setHeaderLabels(["Info", "Doctor", "Time"])
         if "content" in report.keys():
             for sub_key, sub_report in report["content"].items():
@@ -154,10 +163,71 @@ class Process:
                 child2 = QTreeWidgetItem(main_item, [''])
                 text_browser = QTextBrowser()
                 text_browser.setPlainText(sub_report["description"].strip())  # Removing leading/trailing whitespace
+                
                 self.app.sub_history_tree.setItemWidget(child2, 0, text_browser)
                 self.app.sub_history_tree.setFirstItemColumnSpanned(child2, True)
+                
+
+                if "images" in sub_report.keys():
+                    child3 = QTreeWidgetItem(main_item, [''])
+                    text_browser3 = QTextBrowser()
+                    text_browser3.setPlainText(sub_report["description"].strip())  # Removing leading/trailing whitespace
+                    self.app.sub_history_tree.setItemWidget(child3, 0, text_browser3)
+                    self.app.sub_history_tree.setFirstItemColumnSpanned(child3, True)
+                    
+                    table_widget = self.add_images_to_table(sub_report["images"])
+                    self.app.sub_history_tree.setItemWidget(child3, 1, table_widget)
 
 
+    def download_image(self, url):
+        url = f"{AC.IMAGE_URL_PATH}{url}"
+        response = requests.get(url)
+        if response.status_code == 200:
+            return BytesIO(response.content)
+        else:
+            return None
+
+    def add_images_to_table(self, image_urls):
+        table_widget = QTableWidget(2, len(image_urls))
+        
+        # Set the fixed height for all images (adjust as needed)
+        image_height = 100
+        
+        for i, url in enumerate(image_urls):
+            # Download the image
+            widget = QWidget()
+            layout = QVBoxLayout()
+            
+            image_data = self.download_image(url)
+            
+            if image_data:
+                # Create a QPixmap from the image data
+                pixmap = QPixmap()
+                pixmap.loadFromData(image_data.getvalue())
+                
+                # Create a QLabel to display the image
+                label = QLabel()
+                label.setFixedHeight(image_height)
+                label.setPixmap(pixmap.scaledToHeight(image_height))
+
+                button = QPushButton("Open")
+                button.clicked.connect(lambda checked, u=url: self.open_image_in_browser(u))
+                layout.addWidget(button)
+                
+                # Add the QLabel to the table as a QTableWidgetItem
+                table_widget.setItem(0, i, QTableWidgetItem())
+                table_widget.setCellWidget(0, i, label)
+                table_widget.setRowHeight(0, 100)
+            
+            widget.setLayout(layout)
+            table_widget.setCellWidget(1, i, widget)
+            table_widget.setRowHeight(1, 75)
+        
+        return table_widget
+
+    def open_image_in_browser(self, url):
+        url = f"{AC.IMAGE_URL_PATH}{url}"
+        webbrowser.open(url)
 
 
 

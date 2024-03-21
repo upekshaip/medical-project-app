@@ -703,7 +703,7 @@ QLabel {
            <item>
             <widget class="QStackedWidget" name="doctor_view">
              <property name="currentIndex">
-              <number>0</number>
+              <number>6</number>
              </property>
              <widget class="QWidget" name="dashboard">
               <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1884,7 +1884,7 @@ QLabel {
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="3,1">
+                 <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="3,0">
                   <item>
                    <widget class="QFrame" name="frame_17">
                     <property name="frameShape">
@@ -1929,8 +1929,29 @@ QLabel {
                   </item>
                   <item>
                    <widget class="QPushButton" name="new_main_record">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>45</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
                     <property name="text">
-                     <string>New Main Record</string>
+                     <string>  New Main Record</string>
+                    </property>
+                    <property name="icon">
+                     <iconset>
+                      <normaloff>icons/add_class.png</normaloff>icons/add_class.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
                     </property>
                    </widget>
                   </item>
@@ -2444,131 +2465,195 @@ QLabel {
                  <property name="frameShadow">
                   <enum>QFrame::Raised</enum>
                  </property>
-                 <layout class="QFormLayout" name="formLayout">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_26">
-                    <property name="font">
-                     <font>
-                      <pointsize>10</pointsize>
-                      <weight>50</weight>
-                      <italic>false</italic>
-                      <bold>false</bold>
-                     </font>
+                 <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="0,0">
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QFrame" name="frame_19">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
                     </property>
-                    <property name="text">
-                     <string>Main Title:</string>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
                     </property>
+                    <layout class="QFormLayout" name="formLayout">
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_26">
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Main Title:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="label_30">
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Doctor:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="label_28">
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Description:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="0">
+                      <widget class="QLabel" name="label_32">
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Date &amp; Time:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="4" column="1">
+                      <widget class="QLabel" name="main_date">
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QLabel" name="main_doctor">
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLabel" name="main_title">
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="wordWrap">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLabel" name="main_description">
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="wordWrap">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
-                  <item row="0" column="1">
-                   <widget class="QLabel" name="main_title">
-                    <property name="font">
-                     <font>
-                      <pointsize>10</pointsize>
-                      <weight>50</weight>
-                      <italic>false</italic>
-                      <bold>false</bold>
-                     </font>
+                  <item>
+                   <widget class="QFrame" name="frame_20">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
                     </property>
-                    <property name="text">
-                     <string/>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
                     </property>
-                    <property name="wordWrap">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_28">
-                    <property name="font">
-                     <font>
-                      <pointsize>10</pointsize>
-                      <weight>50</weight>
-                      <italic>false</italic>
-                      <bold>false</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Description:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="main_description">
-                    <property name="font">
-                     <font>
-                      <pointsize>10</pointsize>
-                      <weight>50</weight>
-                      <italic>false</italic>
-                      <bold>false</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="wordWrap">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_30">
-                    <property name="font">
-                     <font>
-                      <pointsize>10</pointsize>
-                      <weight>50</weight>
-                      <italic>false</italic>
-                      <bold>false</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Doctor:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QLabel" name="main_doctor">
-                    <property name="font">
-                     <font>
-                      <pointsize>10</pointsize>
-                      <weight>50</weight>
-                      <italic>false</italic>
-                      <bold>false</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_32">
-                    <property name="font">
-                     <font>
-                      <pointsize>10</pointsize>
-                      <weight>50</weight>
-                      <italic>false</italic>
-                      <bold>false</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string>Date &amp; Time:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QLabel" name="main_date">
-                    <property name="font">
-                     <font>
-                      <pointsize>10</pointsize>
-                      <weight>50</weight>
-                      <italic>false</italic>
-                      <bold>false</bold>
-                     </font>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_11">
+                     <item>
+                      <widget class="QPushButton" name="pushButton">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>  Add Sub Section</string>
+                       </property>
+                       <property name="icon">
+                        <iconset>
+                         <normaloff>icons/report.png</normaloff>icons/report.png</iconset>
+                       </property>
+                       <property name="iconSize">
+                        <size>
+                         <width>25</width>
+                         <height>25</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
                    </widget>
                   </item>
                  </layout>

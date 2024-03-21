@@ -2,6 +2,8 @@ class AppConfig(object):
     APP_NAME = "MedSync"
     DB_NAME = "MedSync"
     DB_PATH = f"app/{DB_NAME}/"
+
+    IMAGE_URL_PATH = "http://localhost/web/kusal/img/"
     MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     QR_SCANNER = ""
 
