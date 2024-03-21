@@ -26,6 +26,7 @@ class RunTiime():
         # SEARCH BTN 
         self.app.search_patient_btn.clicked.connect(lambda: self.process.search_patient())
         self.app.close_patient_session.clicked.connect(lambda: self.process.close_patient_session())
+        self.app.scan_qr_btn.clicked.connect(lambda: self.process.open_scanner())
         
         # today_date = date.today()
         # day = today_date.strftime('%d-%m-%Y').split("-")

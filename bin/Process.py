@@ -90,5 +90,12 @@ class Process:
         self.app.patient_info_frame.hide()
         self.app.close_patient_session.hide()
         
-
+    
+    def open_scanner(self):
+        qr_scanner = QRScanner()
+        qr_scanner.exec_()
+        print(f"FINAL: {AC.QR_SCANNER}")
+        self.app.patient_id_input.setText(str(AC.QR_SCANNER))
+        self.search_patient()
+        AC.QR_SCANNER = ""
 
