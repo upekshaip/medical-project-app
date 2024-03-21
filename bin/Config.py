@@ -14,6 +14,17 @@ class AppConfig(object):
     LOGO_ICO_PATH = "config/logo.ico"
     CAM_INPUT_ID = 0
 
-    # Accounts
+    # WARNINGS
+    INTERNET_ERR_WARN = "Internet Connection Error"
+    INTERNET_ERR_MSG = "Please Connect to the internet. No connection!"
+
+
+    # PATIENT
+    PATIENT_DATA = None
+    DOCTOR_DATA = None
+    
+    
+    
+    # Admin Accounts
     ACCOUNTS = [{"username": "user1", "password": "pass1"}, {"username": "user2", "password": "pass2"}, {"username": "user3", "password": "pass3"}]
     LOGGED_IN = False

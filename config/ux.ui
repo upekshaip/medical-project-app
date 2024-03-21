@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>971</width>
-    <height>665</height>
+    <height>675</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -163,7 +163,7 @@ QLabel {
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="doctor_login_page">
        <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -703,7 +703,7 @@ QLabel {
            <item>
             <widget class="QStackedWidget" name="doctor_view">
              <property name="currentIndex">
-              <number>3</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="dashboard">
               <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -733,19 +733,25 @@ QLabel {
                     <x>0</x>
                     <y>0</y>
                     <width>762</width>
-                    <height>765</height>
+                    <height>781</height>
                    </rect>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_5">
                    <item>
                     <widget class="QFrame" name="frame_15">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>45</height>
+                      </size>
+                     </property>
                      <property name="frameShape">
                       <enum>QFrame::StyledPanel</enum>
                      </property>
                      <property name="frameShadow">
                       <enum>QFrame::Raised</enum>
                      </property>
-                     <layout class="QVBoxLayout" name="verticalLayout_6">
+                     <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="3,1">
                       <property name="spacing">
                        <number>4</number>
                       </property>
@@ -759,21 +765,49 @@ QLabel {
                        <number>0</number>
                       </property>
                       <property name="bottomMargin">
-                       <number>9</number>
+                       <number>0</number>
                       </property>
                       <item>
                        <widget class="QLabel" name="label_15">
                         <property name="font">
                          <font>
                           <family>Arial</family>
-                          <pointsize>16</pointsize>
+                          <pointsize>12</pointsize>
                           <weight>50</weight>
                           <italic>false</italic>
                           <bold>false</bold>
                          </font>
                         </property>
                         <property name="text">
-                         <string>Hello Welcome</string>
+                         <string>Actions</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QPushButton" name="close_patient_session">
+                        <property name="minimumSize">
+                         <size>
+                          <width>0</width>
+                          <height>40</height>
+                         </size>
+                        </property>
+                        <property name="font">
+                         <font>
+                          <pointsize>9</pointsize>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>  Close Patient Session</string>
+                        </property>
+                        <property name="icon">
+                         <iconset>
+                          <normaloff>icons/clear.png</normaloff>icons/clear.png</iconset>
+                        </property>
+                        <property name="iconSize">
+                         <size>
+                          <width>25</width>
+                          <height>25</height>
+                         </size>
                         </property>
                        </widget>
                       </item>
@@ -782,6 +816,12 @@ QLabel {
                    </item>
                    <item>
                     <widget class="QFrame" name="frame_7">
+                     <property name="maximumSize">
+                      <size>
+                       <width>16777215</width>
+                       <height>70</height>
+                      </size>
+                     </property>
                      <property name="frameShape">
                       <enum>QFrame::StyledPanel</enum>
                      </property>
@@ -884,6 +924,16 @@ QLabel {
                    </item>
                    <item>
                     <widget class="QFrame" name="frame_2">
+                     <property name="frameShape">
+                      <enum>QFrame::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Raised</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="patient_info_frame">
                      <property name="frameShape">
                       <enum>QFrame::StyledPanel</enum>
                      </property>
@@ -1001,6 +1051,9 @@ QLabel {
                               <property name="text">
                                <string/>
                               </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                              </property>
                               <property name="wordWrap">
                                <bool>true</bool>
                               </property>
@@ -1019,6 +1072,9 @@ QLabel {
                               <property name="text">
                                <string/>
                               </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                              </property>
                               <property name="wordWrap">
                                <bool>true</bool>
                               </property>
@@ -1036,6 +1092,9 @@ QLabel {
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                               </property>
                               <property name="wordWrap">
                                <bool>true</bool>
@@ -1091,6 +1150,9 @@ QLabel {
                               <property name="text">
                                <string/>
                               </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                              </property>
                               <property name="wordWrap">
                                <bool>true</bool>
                               </property>
@@ -1108,6 +1170,9 @@ QLabel {
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                               </property>
                               <property name="wordWrap">
                                <bool>true</bool>
@@ -1208,6 +1273,9 @@ QLabel {
                               <property name="text">
                                <string/>
                               </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                              </property>
                               <property name="wordWrap">
                                <bool>true</bool>
                               </property>
@@ -1226,6 +1294,9 @@ QLabel {
                               <property name="text">
                                <string/>
                               </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                              </property>
                               <property name="wordWrap">
                                <bool>true</bool>
                               </property>
@@ -1243,6 +1314,9 @@ QLabel {
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                               </property>
                               <property name="wordWrap">
                                <bool>true</bool>
@@ -1279,6 +1353,9 @@ QLabel {
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                               </property>
                               <property name="wordWrap">
                                <bool>true</bool>
@@ -1333,6 +1410,9 @@ QLabel {
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                               </property>
                               <property name="wordWrap">
                                <bool>true</bool>
@@ -1413,6 +1493,9 @@ QLabel {
                               <property name="text">
                                <string/>
                               </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                              </property>
                               <property name="wordWrap">
                                <bool>true</bool>
                               </property>
@@ -1448,6 +1531,9 @@ QLabel {
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                               </property>
                               <property name="wordWrap">
                                <bool>true</bool>
@@ -1506,6 +1592,9 @@ QLabel {
                               <property name="text">
                                <string/>
                               </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                              </property>
                               <property name="wordWrap">
                                <bool>true</bool>
                               </property>
@@ -1544,6 +1633,9 @@ QLabel {
                               </property>
                               <property name="scaledContents">
                                <bool>false</bool>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                               </property>
                               <property name="wordWrap">
                                <bool>true</bool>
@@ -1660,6 +1752,9 @@ QLabel {
                               <property name="text">
                                <string/>
                               </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                              </property>
                               <property name="wordWrap">
                                <bool>true</bool>
                               </property>
@@ -1695,6 +1790,9 @@ QLabel {
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                               </property>
                               <property name="wordWrap">
                                <bool>true</bool>
@@ -1752,6 +1850,9 @@ QLabel {
                               </property>
                               <property name="text">
                                <string/>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                               </property>
                               <property name="wordWrap">
                                <bool>true</bool>

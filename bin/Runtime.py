@@ -14,13 +14,18 @@ class RunTiime():
  
     def buttons(self):
 
-        # Dashboard
+        # DASHBOARD BTNS
         self.app.menu_dash.clicked.connect(lambda: self.process.switch_main_pages("Dashboard", self.app.dashboard))
         self.app.menu_history.clicked.connect(lambda: self.process.switch_main_pages("History", self.app.history))
         self.app.menu_profile.clicked.connect(lambda: self.process.switch_main_pages("Profile", self.app.profile))
         self.app.menu_settings.clicked.connect(lambda: self.process.switch_main_pages("Settings", self.app.settings))
 
+        # LOG IN
         self.app.login_btn.clicked.connect(lambda: self.process.doctor_login())
+        
+        # SEARCH BTN 
+        self.app.search_patient_btn.clicked.connect(lambda: self.process.search_patient())
+        self.app.close_patient_session.clicked.connect(lambda: self.process.close_patient_session())
         
         # today_date = date.today()
         # day = today_date.strftime('%d-%m-%Y').split("-")

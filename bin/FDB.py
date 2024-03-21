@@ -27,15 +27,32 @@ class DB:
         try:
             data = self.db.child(f"{AC.DB_PATH}/doctors/{username}").get().val()
             if type(data) == list:
-                return None
+                return False
             
             elif data:
                 data = dict(data)
                 if username == data["uid"] and password == data["password"]:
                     return data
                 else:
-                    return None
+                    return False
             else:
-                return None
+                return False
         except:
+            self.helper.show_warning_popup(AC.INTERNET_ERR_MSG, AC.INTERNET_ERR_WARN)
+            return None
+        
+    def get_patient(self, patient_id):
+        try:
+            data = self.db.child(f"{AC.DB_PATH}/users/{patient_id}").get().val()
+            if type(data) == list:
+                return False
+            
+            elif data:
+                data = dict(data)
+                return data
+            
+            else:
+                return False
+        except:
+            self.helper.show_warning_popup(AC.INTERNET_ERR_MSG, AC.INTERNET_ERR_WARN)
             return None
