@@ -14,6 +14,7 @@ from bin.Helper import Helper
 from bin.FDB import DB
 from bin.Scanner import QRScanner
 from openpyxl import Workbook
+from PyQt5.QtWidgets import QFrame, QLabel, QScrollArea, QTextBrowser
 from openpyxl.chart import PieChart, Reference
 
 class Process:
@@ -115,43 +116,55 @@ class Process:
 
         if report and db_doctor_data:
             self.app.treeWidget.clear()
-            print(report)
-            print(db_doctor_data)
             self.app.treeWidget.setHeaderLabels(["Topic", "Doctor", "Time", "Action", "Status"])
             for main_key, main_report in report.items():
                 main_doctor = f'{db_doctor_data[main_report["doctor"]]["first_name"]} {db_doctor_data[main_report["doctor"]]["last_name"]}'
-                main_item = QTreeWidgetItem(self.app.treeWidget, [main_report["topic"], main_doctor, str(main_report["ts"]), "", main_report["status"]])
+                main_item = QTreeWidgetItem(self.app.treeWidget, [main_report["topic"], main_doctor, str(self.timestamp_to_datetime(main_report["ts"])), "", main_report["status"]])
                 
                 button = QPushButton("View")
                 self.app.treeWidget.setItemWidget(main_item, 3, button)
-                button.clicked.connect(lambda _, report=main_report, key=main_key : self.view_history(report, key))
+                # button.clicked.connect(lambda _, report=main_report, key=main_key : self.view_history(report, key))
+                button.clicked.connect(lambda _, report=main_report, key=main_key, docs=db_doctor_data: self.view_history(report, key, docs))
                 
                 if "content" in main_report.keys():
                     for sub_key, sub_report in main_report["content"].items():
                         sub_doctor = f'{db_doctor_data[sub_report["doctor"]]["first_name"]} {db_doctor_data[sub_report["doctor"]]["last_name"]}'
-                        child1 = QTreeWidgetItem(main_item, [sub_report["topic"], sub_doctor, str(sub_report["ts"])])
+                        child1 = QTreeWidgetItem(main_item, [sub_report["topic"], sub_doctor, str(self.timestamp_to_datetime(sub_report["ts"]))])
                         
-                
-                # for cls in main_report[""]:
-            #         # print(cls)
-            #         class_item = QTreeWidgetItem(teacher_item, [f'    {cls[0]} - grade {cls[1]} - {cls[3]} - {cls[2]}'])
-            #         checkbox = QCheckBox()
-                # self.app.treeWidget.setItemWidget(class_item, 0, checkbox)  # Assuming the checkbox should be in the first column
 
-
-    def view_history(self, report, key):
-        # sub_history
+    
+    def view_history(self, report, key, docs):
+        # adding the main info
         self.switch_main_pages("Sub History", self.app.sub_history)
-        for item in report:
-            self.add_label_to_frame(str(item))
-        print(key)
+        self.app.main_title.setText(report["topic"])
+        self.app.main_description.setText(report["description"])
+        main_doctor = f'{docs[report["doctor"]]["first_name"]} {docs[report["doctor"]]["last_name"]}'
+        self.app.main_doctor.setText(main_doctor)
+        self.app.main_date.setText(str(self.timestamp_to_datetime(report["ts"])))
+
+        # sub_history_tree
+        self.app.sub_history_tree.clear()
+        self.app.sub_history_tree.setHeaderLabels(["Info", "Doctor", "Time"])
+        if "content" in report.keys():
+            for sub_key, sub_report in report["content"].items():
+                sub_doctor = f'{docs[sub_report["doctor"]]["first_name"]} {docs[sub_report["doctor"]]["last_name"]}'
+                main_item = QTreeWidgetItem(self.app.sub_history_tree, [sub_report["topic"], sub_doctor, str(self.timestamp_to_datetime(sub_report["ts"]))])
+                child1 = QTreeWidgetItem(main_item, [f'Type: {sub_report["type"]}'])
+                
+                child2 = QTreeWidgetItem(main_item, [''])
+                text_browser = QTextBrowser()
+                text_browser.setPlainText(sub_report["description"].strip())  # Removing leading/trailing whitespace
+                self.app.sub_history_tree.setItemWidget(child2, 0, text_browser)
+                self.app.sub_history_tree.setFirstItemColumnSpanned(child2, True)
 
 
-    def add_label_to_frame(self, text):
-        label = QLabel(text)
-        label.setAlignment(Qt.AlignCenter)
-        self.app.scroll_frame_sub.addWidget(label)
 
+
+
+    def timestamp_to_datetime(self, timestamp):
+        # Convert timestamp to datetime object
+        dt_object = datetime.fromtimestamp(timestamp)
+        return dt_object
 
 
     #  CAMERA OPEN FUNCTION
