@@ -19,32 +19,27 @@ class Helper:
         pass
 
     def generate_code(self, type):
-        if type == "s":
-            # user
-            num = random.choices("0123456789", k=6)
-            letters = random.choices(string.ascii_uppercase, k=2)
-            id = "".join(num + letters)
-            return id
+        chars = f"0123456789{string.ascii_lowercase}{string.ascii_uppercase}"
+        chars_roles = f"0123456789{string.ascii_uppercase}"
 
-        if type == "t":
-            # teacher
-            num = random.choices("0123456789", k=6)
-            letters = random.choices(string.ascii_uppercase, k=2)
-            id = "".join(num + letters) + "T"
+        if type == "":
+            # UID
+            num = random.choices(chars, k=16)
+            id = "".join(num)
+            return id
+        
+        if type == "d":
+            # doctor
+            num = random.choices(chars_roles, k=10)
+            id = "".join(num)
+            id = "DR" + id
             return id
 
         if type == "e":
             # employee
-            num = random.choices("0123456789", k=6)
-            letters = random.choices(string.ascii_uppercase, k=2)
-            id = "".join(num + letters) + "E"
-            return id
-
-        if type == "c":
-            # class
-            num = random.choices("0123456789", k=13)
-            letters = random.choices(string.ascii_uppercase, k=2)
-            id = "".join(num + letters) + "C"
+            num = random.choices(chars_roles, k=10)
+            id = "".join(num)
+            id = "EM" + id
             return id
         
     def create_id(self, usercode):

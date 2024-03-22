@@ -18,7 +18,7 @@ from PyQt5.QtWidgets import QFrame, QLabel, QScrollArea, QTextBrowser
 from openpyxl.chart import PieChart, Reference
 import sys
 import requests
-from PyQt5.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QWidget, QTreeWidgetItem, QTextBrowser
+from PyQt5.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QWidget, QTreeWidgetItem, QTextBrowser, QFileDialog
 from PyQt5.QtGui import QPixmap
 from io import BytesIO
 import webbrowser
@@ -33,6 +33,7 @@ class Process:
     def start_process(self):
         self.app.patient_info_frame.hide()
         self.app.close_patient_session.hide()
+        self.app.sub_type.addItems(AC.REPORT_TYPES)
 
     def switch_main_pages(self, title, page):
         self.app.menu_title.setText(title)
@@ -46,7 +47,7 @@ class Process:
             
             AC.DOCTOR_DATA = is_authenticated
 
-            self.app.doctor_view.setCurrentWidget(self.app.dashboard)
+            self.switch_main_pages("Dashboard", self.app.dashboard)
             self.app.stackedWidget.setCurrentWidget(self.app.main_page)
         elif is_authenticated is False:
             print("Wrong Username or Password")
@@ -147,13 +148,14 @@ class Process:
         main_doctor = f'{docs[report["doctor"]]["first_name"]} {docs[report["doctor"]]["last_name"]}'
         self.app.main_doctor.setText(main_doctor)
         self.app.main_date.setText(str(self.timestamp_to_datetime(report["ts"])))
+        self.app.main_report_id.setText(report["record_id"])
 
         # sub_history_tree
         self.app.sub_history_tree.clear()
+        self.app.sub_history_tree.setHeaderLabels(["Info", "Doctor", "Time"])
         self.app.sub_history_tree.setColumnWidth(0, 600)
         self.app.sub_history_tree.setColumnWidth(1, 400)
         self.app.sub_history_tree.setColumnWidth(2, 300)
-        self.app.sub_history_tree.setHeaderLabels(["Info", "Doctor", "Time"])
         if "content" in report.keys():
             for sub_key, sub_report in report["content"].items():
                 sub_doctor = f'{docs[sub_report["doctor"]]["first_name"]} {docs[sub_report["doctor"]]["last_name"]}'
@@ -246,3 +248,70 @@ class Process:
         self.search_patient()
         AC.QR_SCANNER = ""
 
+    
+    def openFileDialog(self):
+        options = QFileDialog.Options()
+        files, _ = QFileDialog.getOpenFileNames(self.app, "Select Images", "", "Image Files (*.png *.jpg)", options=options)
+        
+        if files:
+            # Wrap each file path with double quotes
+            files_with_quotes = ['"{0}"'.format(file) for file in files]
+            self.app.sub_images.setText(", ".join(files_with_quotes))
+
+
+
+    def add_main_report(self):
+        pass
+
+    def sub_report_clear(self):
+        self.app.sub_topic.setText("")
+        self.app.sub_type.setCurrentText(AC.REPORT_TYPES[0])
+        self.app.sub_description.setText("")
+        self.app.sub_images.setText("")
+
+    def add_new_sub_report(self):
+        #ID -> self.app.main_report_id
+        main_report_id = self.app.main_report_id.text()
+        sub_topic = self.app.sub_topic.text()
+        sub_type = self.app.sub_type.currentText()
+        sub_description = self.app.sub_description.toPlainText()
+        sub_images = str(self.app.sub_images.text()).split(",")
+        sub_images = [image.replace('"', "").strip() for image in sub_images if len(image) > 0]
+        server_img_path = self.upload_images(sub_images)
+
+        if (main_report_id and sub_topic and sub_description and sub_type):
+            self.app.sub_report_info.setText("")
+            if(self.dbh.add_sub_report(main_report_id, sub_topic,sub_description, sub_type, server_img_path)):
+                self.helper.info("New sub record added!")
+                self.switch_to_history_page()
+                self.sub_report_clear()
+                
+        else:
+            self.app.sub_report_info.setText("Please fill out the required feilds")
+
+        
+    def logout_process(self):
+        AC.PATIENT_DATA = None
+        AC.DOCTOR_DATA = None
+        self.app.stackedWidget.setCurrentWidget(self.app.doctor_login_page)
+        self.app.doctor_view.setCurrentWidget(self.app.dashboard)
+
+
+    def upload_images(self, image_paths):
+        files = []
+        if len(image_paths) > 0:
+            for path in image_paths:
+                files.append(('images[]', open(path, 'rb')))
+            
+            response = requests.post(AC.IMAGE_UPLOAD_API_URL, files=files)
+            
+            if response.status_code == 200:
+                unique_file_names = response.json()
+                print("Uploaded successfully. Unique filenames:", unique_file_names)
+                return unique_file_names
+
+            else:
+                print("Failed to upload images. Status code:", response.status_code)
+                return []
+        else:
+            return []

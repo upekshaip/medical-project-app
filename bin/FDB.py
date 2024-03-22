@@ -91,3 +91,25 @@ class DB:
             self.helper.show_warning_popup(AC.INTERNET_ERR_MSG, AC.INTERNET_ERR_WARN)
             return None
         
+    def add_sub_report(self, main_report_id, topic, description, type, images):
+        patient = AC.PATIENT_DATA["uid"]
+        doctor = AC.DOCTOR_DATA["uid"]
+        sub_record_id = self.helper.generate_code("")
+
+        _data = {
+            "ts": int(math.floor(time.time())),
+            "topic": topic,
+            "description": description,
+            "type": type,
+            "patient": patient,
+            "doctor": doctor,
+            "sub_record_id": sub_record_id,
+            "images": images
+        }
+
+        try:
+            self.db.child(f"{AC.DB_PATH}/reports/{patient}/{main_report_id}/content/{sub_record_id}").set(_data)
+            return True
+        except:
+            self.helper.show_warning_popup(message="No internet connection. Please check your network.",warn="No internet connection")
+            return False

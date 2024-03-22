@@ -4,7 +4,10 @@ class AppConfig(object):
     DB_PATH = f"app/{DB_NAME}/"
 
     IMAGE_URL_PATH = "http://localhost/web/kusal/img/"
+    IMAGE_UPLOAD_API_URL = "http://localhost/web/kusal/includes/api.inc.php"
+
     MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    REPORT_TYPES = ["Prescription","Referral Letter", "Diagnosis","Treatment Plan", "Lab Test Result", "Surgery","Imaging Test Result", "Therapy Session Notes", "Follow-up Instructions", "Medical Procedure", "Medical History", "Immunization Record"]
     QR_SCANNER = ""
 
     INSTITUTE_ADDRESS = "No.585, Kandy Road, Nittambuwa."

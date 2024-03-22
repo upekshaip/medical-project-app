@@ -27,6 +27,21 @@ class RunTiime():
         self.app.search_patient_btn.clicked.connect(lambda: self.process.search_patient())
         self.app.close_patient_session.clicked.connect(lambda: self.process.close_patient_session())
         self.app.scan_qr_btn.clicked.connect(lambda: self.process.open_scanner())
+
+        # ROPORT BTNS
+        self.app.new_main_record.clicked.connect(lambda: self.process.switch_main_pages("Add New Report", self.app.new_report))
+        self.app.new_sub_record.clicked.connect(lambda: self.process.switch_main_pages("Add New Sub Report", self.app.new_sub_report))
+
+        # SUB REPORT BTN
+        self.app.add_image_btn.clicked.connect(lambda: self.process.openFileDialog())
+        self.app.clear_images.clicked.connect(lambda: self.app.sub_images.setText(""))
+        self.app.add_new_sub_report.clicked.connect(lambda: self.process.add_new_sub_report())
+
+        # LOGOUT
+        self.app.menu_logout.clicked.connect(lambda: self.process.logout_process())
+        
+
+
         
         # today_date = date.today()
         # day = today_date.strftime('%d-%m-%Y').split("-")
