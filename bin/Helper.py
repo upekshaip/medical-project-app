@@ -109,8 +109,11 @@ class Helper:
 
         today_date = datetime.now().strftime('%Y-%m-%d')
         self.create_sub_dir("id", today_date)
-        frame.save(f"id/{today_date}/{usercode}.png")
+
+        my_path = f"id/{today_date}/{usercode}.png"
+        frame.save(my_path)
         print("Process finished.")
+        return my_path
 
     
     def overlay_images(self, user_id):

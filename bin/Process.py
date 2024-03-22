@@ -22,6 +22,10 @@ from PyQt5.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QLabel
 from PyQt5.QtGui import QPixmap
 from io import BytesIO
 import webbrowser
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 
 class Process:
     def __init__(self, app):
@@ -403,8 +407,12 @@ class Process:
         uid_code = self.app.user_uid.text()
         first_name = self.app.user_first_name.text()
         last_name = self.app.user_last_name.text()
+        email = self.app.user_email.text()
+        message = f"Dear {first_name} {last_name},\n\nPlease find attached your User ID card.\n\nThank you,\nMedSync."
 
-        self.helper.generate_id(uid_code, first_name, last_name)
+        path = self.helper.generate_id(uid_code, first_name, last_name)
+        
+        self.send_email(email, message, path)
         self.helper.info("User ID generated!")
         
         self.app.user_info_frame.hide()
@@ -563,3 +571,32 @@ class Process:
     def switch_to_profile(self):
         self.switch_main_pages("Profile", self.app.profile)
         self.reset_doctor_profile()
+
+
+    def send_email(self, receiver_email, message, image_path):
+        # Set up the SMTP server
+        smtp_server = "smtp.gmail.com"
+        smtp_port = 587
+
+        # Create a multipart message
+        msg = MIMEMultipart()
+        msg['From'] = AC.EMAIL
+        msg['To'] = receiver_email
+        msg['Subject'] = AC.EMAIL_SUBJECT
+
+        # Attach message
+        msg.attach(MIMEText(message, 'plain'))
+
+        # Attach image
+        with open(image_path, 'rb') as file:
+            img = MIMEImage(file.read(), name=os.path.basename(image_path))
+        msg.attach(img)
+
+        # Start the SMTP session
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            # Start TLS for security
+            server.starttls()
+            # Log in to the SMTP server
+            server.login(AC.EMAIL, AC.EMAIL_PASSWORD)
+            # Send the email
+            server.sendmail(AC.EMAIL, receiver_email, msg.as_string())

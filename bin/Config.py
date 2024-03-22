@@ -31,8 +31,11 @@ class AppConfig(object):
     DOCTOR_DATA = None
     SERVICE_ACCOUNT_LOGGED = None
     
-    
-    
+    # EMAIL STM
+    EMAIL = "medsync0@gmail.com"
+    EMAIL_PASSWORD = "cjusazqsyoavqkgy"
+    EMAIL_SUBJECT = "Your MedSync User ID Card"
+
     # Admin Accounts
     ACCOUNTS = [{"username": "user1", "password": "pass1"}, {"username": "user2", "password": "pass2"}, {"username": "user3", "password": "pass3"}]
     LOGGED_IN = False
