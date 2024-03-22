@@ -69,6 +69,7 @@ class Process:
     def save_settings(self):
         AC.CAM_INPUT_ID = self.app.cam_input.value()
         self.save_json_file()
+        self.helper.info("Settings Saved!")
 
 
     def create_directory(self, dir_name):
@@ -191,6 +192,9 @@ class Process:
     
     def view_history(self, report, key, docs):
         # adding the main info
+        self.app.status_combo.clear()
+        self.app.status_combo.addItems(["Active", "Inactive", "Stable"])
+
         self.switch_main_pages("Sub History", self.app.sub_history)
         self.app.main_title.setText(report["topic"])
         self.app.main_description.setText(report["description"])
@@ -198,6 +202,7 @@ class Process:
         self.app.main_doctor.setText(main_doctor)
         self.app.main_date.setText(str(self.timestamp_to_datetime(report["ts"])))
         self.app.main_report_id.setText(report["record_id"])
+        self.app.status_combo.setCurrentText(report["status"])
 
         # sub_history_tree
         self.app.sub_history_tree.clear()
@@ -280,6 +285,13 @@ class Process:
     def open_image_in_browser(self, url):
         url = f"{AC.IMAGE_URL_PATH}{url}"
         webbrowser.open(url)
+
+    def change_status(self):
+        status = self.app.status_combo.currentText()
+        main_report_id = self.app.main_report_id.text()
+
+        self.dbh.change_status(main_report_id, status)
+        self.helper.info(f"Status Changed to {status}!")
 
 
 
@@ -367,6 +379,7 @@ class Process:
 
         
     def logout_process(self):
+
         AC.PATIENT_DATA = None
         AC.DOCTOR_DATA = None
         self.app.stackedWidget.setCurrentWidget(self.app.doctor_login_page)
@@ -403,6 +416,7 @@ class Process:
             self.app.d_first_name.setText(data["first_name"])
             self.app.d_last_name.setText(data["last_name"])
             self.app.d_gender.setCurrentText(data["gender"])
+            self.app.d_district.setCurrentText(data["district"])
 
             year, month, day = map(int, data["dob"].split('-'))
             date = QDate(year, month, day)

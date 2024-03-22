@@ -162,7 +162,7 @@ QProgressBar {
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="doctor_login_page">
        <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -762,7 +762,7 @@ QProgressBar {
            <item>
             <widget class="QStackedWidget" name="doctor_view">
              <property name="currentIndex">
-              <number>0</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="dashboard">
               <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -2722,19 +2722,22 @@ QProgressBar {
                        </property>
                       </widget>
                      </item>
-                     <item row="3" column="0">
-                      <widget class="QLabel" name="label_30">
+                     <item row="1" column="1">
+                      <widget class="QLabel" name="main_title">
                        <property name="font">
                         <font>
                          <family>Arial</family>
                          <pointsize>10</pointsize>
-                         <weight>50</weight>
+                         <weight>75</weight>
                          <italic>false</italic>
-                         <bold>false</bold>
+                         <bold>true</bold>
                         </font>
                        </property>
                        <property name="text">
-                        <string>Doctor:</string>
+                        <string/>
+                       </property>
+                       <property name="wordWrap">
+                        <bool>true</bool>
                        </property>
                       </widget>
                      </item>
@@ -2751,6 +2754,57 @@ QProgressBar {
                        </property>
                        <property name="text">
                         <string>Description:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QLabel" name="main_description">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                         <weight>75</weight>
+                         <italic>false</italic>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string/>
+                       </property>
+                       <property name="wordWrap">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="label_30">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Doctor:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QLabel" name="main_doctor">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                         <weight>75</weight>
+                         <italic>false</italic>
+                         <bold>true</bold>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string/>
                        </property>
                       </widget>
                      </item>
@@ -2786,60 +2840,6 @@ QProgressBar {
                        </property>
                       </widget>
                      </item>
-                     <item row="3" column="1">
-                      <widget class="QLabel" name="main_doctor">
-                       <property name="font">
-                        <font>
-                         <family>Arial</family>
-                         <pointsize>10</pointsize>
-                         <weight>75</weight>
-                         <italic>false</italic>
-                         <bold>true</bold>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="1">
-                      <widget class="QLabel" name="main_title">
-                       <property name="font">
-                        <font>
-                         <family>Arial</family>
-                         <pointsize>10</pointsize>
-                         <weight>75</weight>
-                         <italic>false</italic>
-                         <bold>true</bold>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="wordWrap">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="2" column="1">
-                      <widget class="QLabel" name="main_description">
-                       <property name="font">
-                        <font>
-                         <family>Arial</family>
-                         <pointsize>10</pointsize>
-                         <weight>75</weight>
-                         <italic>false</italic>
-                         <bold>true</bold>
-                        </font>
-                       </property>
-                       <property name="text">
-                        <string/>
-                       </property>
-                       <property name="wordWrap">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
                      <item row="5" column="0">
                       <widget class="QLabel" name="label_33">
                        <property name="font">
@@ -2865,6 +2865,47 @@ QProgressBar {
                        </property>
                        <property name="text">
                         <string/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="6" column="0">
+                      <widget class="QLabel" name="label_46">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Status:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="6" column="1">
+                      <widget class="QComboBox" name="status_combo">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>30</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="7" column="1">
+                      <widget class="QPushButton" name="change_status_btn">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                       <property name="font">
+                        <font>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>Change Status</string>
                        </property>
                       </widget>
                      </item>

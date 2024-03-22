@@ -1,8 +1,1 @@
-{
-  "cam_input_id": 1,
-  "accounts": [
-    { "username": "admin1", "password": "pass1" },
-    { "username": "admin2", "password": "pass2" },
-    { "username": "admin3", "password": "pass3" }
-  ]
-}
+{"cam_input_id": 0, "accounts": [{"username": "admin1", "password": "pass1"}, {"username": "admin2", "password": "pass2"}, {"username": "admin3", "password": "pass3"}]}

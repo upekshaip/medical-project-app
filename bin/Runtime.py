@@ -31,6 +31,7 @@ class RunTiime():
         # ROPORT BTNS
         self.app.new_main_record.clicked.connect(lambda: self.process.switch_to_main_record())
         self.app.new_sub_record.clicked.connect(lambda: self.process.switch_to_sub_record())
+        self.app.change_status_btn.clicked.connect(lambda: self.process.change_status())
 
         # SUB REPORT BTN
         self.app.add_image_btn.clicked.connect(lambda: self.process.openFileDialog())

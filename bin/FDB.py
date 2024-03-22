@@ -171,3 +171,13 @@ class DB:
         except:
             self.helper.show_warning_popup(message="No internet connection. Please check your network.",warn="No internet connection")
             return False
+        
+    def change_status(self, main_report_id, status):
+        patient = AC.PATIENT_DATA["uid"]
+        try:
+            self.db.child(f"{AC.DB_PATH}/reports/{patient}/{main_report_id}/status").set(status)
+            return True
+        except:
+            self.helper.show_warning_popup(message="No internet connection. Please check your network.",warn="No internet connection")
+            return False
+
