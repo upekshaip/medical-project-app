@@ -9,6 +9,8 @@ class AppConfig(object):
     MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     REPORT_TYPES = ["Prescription","Referral Letter", "Diagnosis","Treatment Plan", "Lab Test Result", "Surgery","Imaging Test Result", "Therapy Session Notes", "Follow-up Instructions", "Medical Procedure", "Medical History", "Immunization Record"]
     QR_SCANNER = ""
+    DISTRICTS = ["Ampara","Anuradhapura","Badulla","Batticaloa","Colombo","Galle","Gampaha","Hambantota","Jaffna","Kalutara","Kandy","Kegalle","Kilinochchi","Kurunegala","Mannar","Matale","Matara","Monaragala","Mullaitivu","Nuwara Eliya","Polonnaruwa","Puttalam","Ratnapura","Trincomalee","Vavuniya"]
+    
 
     INSTITUTE_ADDRESS = "No.585, Kandy Road, Nittambuwa."
     INSTITUTE_PHONE1 = "0332052345"

@@ -17,7 +17,7 @@ class RunTiime():
         # DASHBOARD BTNS
         self.app.menu_dash.clicked.connect(lambda: self.process.switch_main_pages("Dashboard", self.app.dashboard))
         self.app.menu_history.clicked.connect(lambda: self.process.switch_to_history_page())
-        self.app.menu_profile.clicked.connect(lambda: self.process.switch_main_pages("Profile", self.app.profile))
+        self.app.menu_profile.clicked.connect(lambda: self.process.switch_to_profile())
         self.app.menu_settings.clicked.connect(lambda: self.process.switch_main_pages("Settings", self.app.settings))
 
         # LOG IN
@@ -41,6 +41,9 @@ class RunTiime():
         # LOGOUT
         self.app.menu_logout.clicked.connect(lambda: self.process.logout_process())
         
+        # Profile
+        self.app.edit_profile.clicked.connect(lambda: self.process.save_doctor_profile())
+        self.app.reset_profile.clicked.connect(lambda: self.process.reset_doctor_profile())
 
 
         

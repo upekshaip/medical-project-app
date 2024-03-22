@@ -34,6 +34,8 @@ class Process:
         self.app.patient_info_frame.hide()
         self.app.close_patient_session.hide()
         self.app.sub_type.addItems(AC.REPORT_TYPES)
+        self.app.d_district.addItems(AC.DISTRICTS)
+        self.app.d_dob.setCalendarPopup(True)
 
     def switch_main_pages(self, title, page):
         self.app.menu_title.setText(title)
@@ -42,14 +44,18 @@ class Process:
     def doctor_login(self):
         username = self.app.login_username.text().strip()
         password = self.app.login_password.text()
-        is_authenticated = self.dbh.check_doctor(username, password)
-        if is_authenticated:
-            
-            AC.DOCTOR_DATA = is_authenticated
+        if username and password:
+            is_authenticated = self.dbh.check_doctor(username, password)
+            if is_authenticated:
+                
+                AC.DOCTOR_DATA = is_authenticated
 
-            self.switch_main_pages("Dashboard", self.app.dashboard)
-            self.app.stackedWidget.setCurrentWidget(self.app.main_page)
-        elif is_authenticated is False:
+                self.switch_main_pages("Dashboard", self.app.dashboard)
+                self.app.stackedWidget.setCurrentWidget(self.app.main_page)
+            elif is_authenticated is False:
+                self.app.login_info.setText("Wrong Username or Password")
+        
+        else:
             self.app.login_info.setText("Wrong Username or Password")
 
     def search_patient(self):
@@ -177,7 +183,8 @@ class Process:
                 if "images" in sub_report.keys():
                     child3 = QTreeWidgetItem(main_item, [''])
                     text_browser3 = QTextBrowser()
-                    text_browser3.setPlainText(sub_report["description"].strip())  # Removing leading/trailing whitespace
+                    text_browser3.setPlainText(sub_report["description"].strip())
+                    text_browser3.setFixedHeight(210)
                     self.app.sub_history_tree.setItemWidget(child3, 0, text_browser3)
                     self.app.sub_history_tree.setFirstItemColumnSpanned(child3, True)
                     
@@ -346,3 +353,58 @@ class Process:
                 return []
         else:
             return []
+        
+
+    def reset_doctor_profile(self):
+        data = self.dbh.get_doctor(AC.DOCTOR_DATA["uid"])
+        AC.DOCTOR_DATA = data
+        if data:
+            self.app.d_full_name.setText(data["full_name"])
+            self.app.d_uid.setText(data["uid"])
+            self.app.d_first_name.setText(data["first_name"])
+            self.app.d_last_name.setText(data["last_name"])
+            self.app.d_gender.setCurrentText(data["gender"])
+
+            year, month, day = map(int, data["dob"].split('-'))
+            date = QDate(year, month, day)
+            self.app.d_dob.setDate(date)
+
+            self.app.d_nic.setText(data["nic"])
+            self.app.d_mbbs.setText(data["mbbs"])
+            self.app.d_address_l1.setText(data["address_l1"])
+            self.app.d_address_l2.setText(data["address_l2"])
+            self.app.d_phone.setText(data["phone"])
+            self.app.d_email.setText(data["email"])
+
+    def save_doctor_profile(self):
+        full_name = self.app.d_full_name.text()
+        uid = self.app.d_uid.text()
+        first_name = self.app.d_first_name.text()
+        last_name = self.app.d_last_name.text()
+        gender = self.app.d_gender.currentText()
+        date = str(self.app.d_dob.text()).replace("/", "-")
+        nic = self.app.d_nic.text()
+        mbbs = self.app.d_mbbs.text()
+        address_l1 = self.app.d_address_l1.text()
+        address_l2 = self.app.d_address_l2.text()
+        phone = self.app.d_phone.text()
+        email = self.app.d_email.text()
+        district = self.app.d_district.currentText()
+
+        data = [full_name, uid, first_name, last_name, gender, date, nic, mbbs, address_l1, address_l2, phone, email, district]
+        is_ok = True
+        for item in data:
+            if not item:
+                self.app.profile_info.setText("All feilds are required")
+                is_ok = False
+                break
+        if is_ok:
+            self.dbh.set_doc_details(data)
+            self.reset_doctor_profile()
+            self.helper.info("Doctor details updated!")
+            
+
+
+    def switch_to_profile(self):
+        self.switch_main_pages("Profile", self.app.profile)
+        self.reset_doctor_profile()
