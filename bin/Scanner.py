@@ -28,14 +28,8 @@ class App(QWidget):
         vbox.addWidget(self.text_label)
         self.setLayout(vbox)
 
-
-        cam_data = 0
-        if os.path.exists(AC.SETTINGS_JSON_PATH):
-            with open(AC.SETTINGS_JSON_PATH, "r") as jf:
-                cam_data = json.load(jf)
-                cam_data = cam_data["cam_input_id"]
             
-        self.capture = cv2.VideoCapture(cam_data)
+        self.capture = cv2.VideoCapture(AC.CAM_INPUT_ID)
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.read_qr_code)

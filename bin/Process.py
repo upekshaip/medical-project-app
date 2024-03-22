@@ -31,11 +31,50 @@ class Process:
         self.db = self.dbh.db
 
     def start_process(self):
+        self.json_data_handle()
         self.app.patient_info_frame.hide()
         self.app.close_patient_session.hide()
         self.app.sub_type.addItems(AC.REPORT_TYPES)
         self.app.d_district.addItems(AC.DISTRICTS)
         self.app.d_dob.setCalendarPopup(True)
+        self.app.cam_input.setValue(AC.CAM_INPUT_ID)
+
+
+    def json_data_handle(self):
+        self.create_directory("config")
+        if os.path.exists(AC.SETTINGS_JSON_PATH):
+            with open(AC.SETTINGS_JSON_PATH, "r") as jf:
+                cam_data = json.load(jf)
+                AC.CAM_INPUT_ID = cam_data["cam_input_id"]
+                AC.ACCOUNTS = cam_data["accounts"]
+        else:
+            settings_data = {
+                "cam_input_id": AC.CAM_INPUT_ID,
+                "accounts": AC.ACCOUNTS
+            }
+            with open(AC.SETTINGS_JSON_PATH, 'w') as json_file:
+                json.dump(settings_data, json_file)
+
+    
+    def save_json_file(self):
+        settings_data = {
+            "cam_input_id": AC.CAM_INPUT_ID,
+            "accounts": AC.ACCOUNTS
+        }
+        self.create_directory("config")
+        if os.path.exists(AC.SETTINGS_JSON_PATH):
+            with open(AC.SETTINGS_JSON_PATH, 'w') as json_file:
+                json.dump(settings_data, json_file)
+
+    def save_settings(self):
+        AC.CAM_INPUT_ID = self.app.cam_input.value()
+        self.save_json_file()
+
+
+    def create_directory(self, dir_name):
+        if not os.path.exists(dir_name):
+            os.mkdir(dir_name)
+            print("Directory ", dir_name,  " Created ")
 
     def switch_main_pages(self, title, page):
         self.app.menu_title.setText(title)
