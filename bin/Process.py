@@ -50,7 +50,7 @@ class Process:
             self.switch_main_pages("Dashboard", self.app.dashboard)
             self.app.stackedWidget.setCurrentWidget(self.app.main_page)
         elif is_authenticated is False:
-            print("Wrong Username or Password")
+            self.app.login_info.setText("Wrong Username or Password")
 
     def search_patient(self):
         patient_id = self.app.patient_id_input.text()
@@ -124,6 +124,10 @@ class Process:
         if report and db_doctor_data:
             self.app.treeWidget.clear()
             self.app.treeWidget.setHeaderLabels(["Topic", "Doctor", "Time", "Action", "Status"])
+            self.app.treeWidget.setColumnWidth(0, 600)
+            self.app.treeWidget.setColumnWidth(1, 300)
+            self.app.treeWidget.setColumnWidth(2, 300)
+            self.app.treeWidget.setColumnWidth(4, 300)
             for main_key, main_report in report.items():
                 main_doctor = f'{db_doctor_data[main_report["doctor"]]["first_name"]} {db_doctor_data[main_report["doctor"]]["last_name"]}'
                 main_item = QTreeWidgetItem(self.app.treeWidget, [main_report["topic"], main_doctor, str(self.timestamp_to_datetime(main_report["ts"])), "", main_report["status"]])
@@ -154,7 +158,7 @@ class Process:
         self.app.sub_history_tree.clear()
         self.app.sub_history_tree.setHeaderLabels(["Info", "Doctor", "Time"])
         self.app.sub_history_tree.setColumnWidth(0, 600)
-        self.app.sub_history_tree.setColumnWidth(1, 400)
+        self.app.sub_history_tree.setColumnWidth(1, 300)
         self.app.sub_history_tree.setColumnWidth(2, 300)
         if "content" in report.keys():
             for sub_key, sub_report in report["content"].items():
@@ -260,14 +264,40 @@ class Process:
 
 
 
-    def add_main_report(self):
-        pass
+    def add_new_main_report(self):
+        topic = self.app.new_main_topic.text()
+        description = self.app.new_main_description.toPlainText()
+        if (topic and description):
+            self.app.main_report_info.setText("")
+            if (self.dbh.add_main_report(topic, description)):
+                self.helper.info("New main record added!")
+                self.switch_to_history_page()
+                self.main_report_clear()
+
+        else:
+            self.app.main_report_info.setText("Please fill out the required feilds")
+
 
     def sub_report_clear(self):
         self.app.sub_topic.setText("")
         self.app.sub_type.setCurrentText(AC.REPORT_TYPES[0])
         self.app.sub_description.setText("")
         self.app.sub_images.setText("")
+        self.app.sub_report_info.setText("")
+    
+    def main_report_clear(self):
+        self.app.new_main_topic.setText("")
+        self.app.new_main_description.setText("")
+        self.app.main_report_info.setText("")
+
+    def switch_to_main_record(self):
+        self.main_report_clear()
+        self.switch_main_pages("Add New Report", self.app.new_report)
+    
+    def switch_to_sub_record(self):
+        self.sub_report_clear()
+        self.switch_main_pages("Add New Sub Report", self.app.new_sub_report)
+
 
     def add_new_sub_report(self):
         #ID -> self.app.main_report_id
@@ -295,6 +325,7 @@ class Process:
         AC.DOCTOR_DATA = None
         self.app.stackedWidget.setCurrentWidget(self.app.doctor_login_page)
         self.app.doctor_view.setCurrentWidget(self.app.dashboard)
+        self.app.login_info.setText("")
 
 
     def upload_images(self, image_paths):

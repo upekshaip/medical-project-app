@@ -187,7 +187,10 @@ QProgressBar {
              <property name="frameShadow">
               <enum>QFrame::Raised</enum>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_37">
+             <layout class="QHBoxLayout" name="horizontalLayout_37" stretch="0,0">
+              <property name="leftMargin">
+               <number>30</number>
+              </property>
               <item>
                <widget class="QLabel" name="label_103">
                 <property name="minimumSize">
@@ -198,8 +201,8 @@ QProgressBar {
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>150</width>
-                  <height>150</height>
+                  <width>120</width>
+                  <height>120</height>
                  </size>
                 </property>
                 <property name="text">
@@ -391,6 +394,7 @@ QProgressBar {
                 </property>
                 <property name="font">
                  <font>
+                  <family>Arial</family>
                   <pointsize>10</pointsize>
                   <weight>50</weight>
                   <italic>false</italic>
@@ -681,7 +685,7 @@ QProgressBar {
          </widget>
         </item>
         <item>
-         <widget class="QFrame" name="frame_4">
+         <widget class="QFrame" name="main_frame">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
           </property>
@@ -705,7 +709,7 @@ QProgressBar {
             <number>0</number>
            </property>
            <item>
-            <widget class="QFrame" name="frame_5">
+            <widget class="QFrame" name="topic_frame">
              <property name="font">
               <font>
                <weight>50</weight>
@@ -756,7 +760,7 @@ QProgressBar {
            <item>
             <widget class="QStackedWidget" name="doctor_view">
              <property name="currentIndex">
-              <number>0</number>
+              <number>5</number>
              </property>
              <widget class="QWidget" name="dashboard">
               <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -784,8 +788,8 @@ QProgressBar {
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>-458</y>
-                    <width>870</width>
+                    <y>0</y>
+                    <width>350</width>
                     <height>1056</height>
                    </rect>
                   </property>
@@ -2834,7 +2838,125 @@ QProgressBar {
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="new_report"/>
+             <widget class="QWidget" name="new_report">
+              <layout class="QVBoxLayout" name="verticalLayout_16">
+               <item>
+                <widget class="QFrame" name="frame_28">
+                 <property name="frameShape">
+                  <enum>QFrame::StyledPanel</enum>
+                 </property>
+                 <property name="frameShadow">
+                  <enum>QFrame::Raised</enum>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_15">
+                  <item>
+                   <widget class="QFrame" name="frame_29">
+                    <property name="frameShape">
+                     <enum>QFrame::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Raised</enum>
+                    </property>
+                    <layout class="QFormLayout" name="formLayout_3">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_38">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>* Topic:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="new_main_topic">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>35</height>
+                        </size>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_40">
+                       <property name="font">
+                        <font>
+                         <family>Arial</family>
+                         <pointsize>10</pointsize>
+                        </font>
+                       </property>
+                       <property name="text">
+                        <string>* Description:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QTextEdit" name="new_main_description">
+                       <property name="font">
+                        <font>
+                         <family>MS Shell Dlg 2</family>
+                         <pointsize>10</pointsize>
+                         <weight>50</weight>
+                         <italic>false</italic>
+                         <bold>false</bold>
+                        </font>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="main_report_info">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QPushButton" name="add_new_main_report">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>40</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>  Add new main report</string>
+                    </property>
+                    <property name="icon">
+                     <iconset>
+                      <normaloff>icons/save.png</normaloff>icons/save.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
              <widget class="QWidget" name="new_sub_report">
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
@@ -2864,7 +2986,7 @@ QProgressBar {
                         </font>
                        </property>
                        <property name="text">
-                        <string>Topic:</string>
+                        <string>* Topic:</string>
                        </property>
                       </widget>
                      </item>
@@ -2887,7 +3009,7 @@ QProgressBar {
                         </font>
                        </property>
                        <property name="text">
-                        <string>Type:</string>
+                        <string>* Type:</string>
                        </property>
                       </widget>
                      </item>
@@ -2910,7 +3032,7 @@ QProgressBar {
                         </font>
                        </property>
                        <property name="text">
-                        <string>Description:</string>
+                        <string>* Description:</string>
                        </property>
                       </widget>
                      </item>
@@ -3039,6 +3161,12 @@ QProgressBar {
                   </item>
                   <item>
                    <widget class="QLabel" name="sub_report_info">
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <pointsize>10</pointsize>
+                     </font>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
@@ -3114,6 +3242,12 @@ QProgressBar {
        </property>
        <item>
         <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>Arial</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>Developed by CGP - Group CN</string>
          </property>

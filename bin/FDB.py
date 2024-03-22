@@ -113,3 +113,24 @@ class DB:
         except:
             self.helper.show_warning_popup(message="No internet connection. Please check your network.",warn="No internet connection")
             return False
+        
+    def add_main_report(self, topic, description):
+        patient = AC.PATIENT_DATA["uid"]
+        doctor = AC.DOCTOR_DATA["uid"]
+        record_id = self.helper.generate_code("")
+
+        _data = {
+            "ts": int(math.floor(time.time())),
+            "topic": topic,
+            "description": description,
+            "patient": patient,
+            "doctor": doctor,
+            "record_id": record_id,
+            "status": "Active"
+        }
+        try:
+            self.db.child(f"{AC.DB_PATH}/reports/{patient}/{record_id}").set(_data)
+            return True
+        except:
+            self.helper.show_warning_popup(message="No internet connection. Please check your network.",warn="No internet connection")
+            return False

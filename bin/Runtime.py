@@ -29,13 +29,14 @@ class RunTiime():
         self.app.scan_qr_btn.clicked.connect(lambda: self.process.open_scanner())
 
         # ROPORT BTNS
-        self.app.new_main_record.clicked.connect(lambda: self.process.switch_main_pages("Add New Report", self.app.new_report))
-        self.app.new_sub_record.clicked.connect(lambda: self.process.switch_main_pages("Add New Sub Report", self.app.new_sub_report))
+        self.app.new_main_record.clicked.connect(lambda: self.process.switch_to_main_record())
+        self.app.new_sub_record.clicked.connect(lambda: self.process.switch_to_sub_record())
 
         # SUB REPORT BTN
         self.app.add_image_btn.clicked.connect(lambda: self.process.openFileDialog())
         self.app.clear_images.clicked.connect(lambda: self.app.sub_images.setText(""))
         self.app.add_new_sub_report.clicked.connect(lambda: self.process.add_new_sub_report())
+        self.app.add_new_main_report.clicked.connect(lambda: self.process.add_new_main_report())
 
         # LOGOUT
         self.app.menu_logout.clicked.connect(lambda: self.process.logout_process())
