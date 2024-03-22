@@ -22,6 +22,10 @@ class RunTiime():
 
         # LOG IN
         self.app.login_btn.clicked.connect(lambda: self.process.doctor_login())
+        self.app.service_login_btn.clicked.connect(lambda: self.process.service_login())
+        self.app.doc_switch_btn.clicked.connect(lambda: self.app.stackedWidget.setCurrentWidget(self.app.doctor_login_page))
+        self.app.switch_service_btn.clicked.connect(lambda: self.app.stackedWidget.setCurrentWidget(self.app.emplooyee_login_page))
+        
         
         # SEARCH BTN 
         self.app.search_patient_btn.clicked.connect(lambda: self.process.search_patient())
@@ -41,6 +45,7 @@ class RunTiime():
 
         # LOGOUT
         self.app.menu_logout.clicked.connect(lambda: self.process.logout_process())
+        self.app.menu_logout_service.clicked.connect(lambda: self.process.logout_service_account())
         
         # Profile
         self.app.edit_profile.clicked.connect(lambda: self.process.save_doctor_profile())
@@ -49,6 +54,13 @@ class RunTiime():
         # Settings
         self.app.back_btn.clicked.connect(lambda: self.app.stackedWidget.setCurrentWidget(self.app.main_page))
         self.app.settings_save_btn.clicked.connect(lambda: self.process.save_settings())
+
+        # SERVICE ACCOUNT
+        self.app.search_user_btn.clicked.connect(lambda: self.process.search_user())
+        self.app.scan_qr_user_btn.clicked.connect(lambda: self.process.open_scanner_search_user())
+        self.app.generate_id.clicked.connect(lambda: self.process.genarate_id())
+        
+
 
 
 

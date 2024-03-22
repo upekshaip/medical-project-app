@@ -12,10 +12,10 @@ class AppConfig(object):
     DISTRICTS = ["Ampara","Anuradhapura","Badulla","Batticaloa","Colombo","Galle","Gampaha","Hambantota","Jaffna","Kalutara","Kandy","Kegalle","Kilinochchi","Kurunegala","Mannar","Matale","Matara","Monaragala","Mullaitivu","Nuwara Eliya","Polonnaruwa","Puttalam","Ratnapura","Trincomalee","Vavuniya"]
     
 
-    INSTITUTE_ADDRESS = "No.585, Kandy Road, Nittambuwa."
+    INSTITUTE_ADDRESS = "55/1, Pitipana"
     INSTITUTE_PHONE1 = "0332052345"
     INSTITUTE_PHONE2 = "0776970029"
-    INSTITUTE_EMAIL = "collegeofalexandriana@gmail.com"
+    INSTITUTE_EMAIL = "medsync0@gmail.com"
 
     SETTINGS_JSON_PATH = "config/settings.json"
     LOGO_ICO_PATH = "config/logo.ico"
@@ -29,6 +29,7 @@ class AppConfig(object):
     # PATIENT
     PATIENT_DATA = None
     DOCTOR_DATA = None
+    SERVICE_ACCOUNT_LOGGED = None
     
     
     

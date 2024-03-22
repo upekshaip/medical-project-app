@@ -84,6 +84,11 @@ class Process:
     def doctor_login(self):
         username = self.app.login_username.text().strip()
         password = self.app.login_password.text()
+        
+        self.app.login_username.setText("")
+        self.app.login_password.setText("")
+        self.app.login_info.setText("")
+
         if username and password:
             is_authenticated = self.dbh.check_doctor(username, password)
             if is_authenticated:
@@ -97,6 +102,82 @@ class Process:
         
         else:
             self.app.login_info.setText("Wrong Username or Password")
+    
+    def service_login(self):
+        username = self.app.service_login_username.text().strip()
+        password = self.app.service_login_password.text()
+        
+        self.app.user_info_frame.hide()
+        self.app.generate_id.hide()
+
+        self.app.service_login_username.setText("")
+        self.app.service_login_password.setText("")
+        self.app.service_login_info.setText("")
+        
+        if username and password:
+            is_authenticated = self.check_service_account(username, password)
+            if is_authenticated:
+                
+                AC.SERVICE_ACCOUNT_LOGGED = is_authenticated
+                self.app.stackedWidget.setCurrentWidget(self.app.service_area)
+            
+            else:
+                self.app.service_login_info.setText("Wrong Username or Password")
+        
+        else:
+            self.app.service_login_info.setText("Wrong Username or Password")
+
+    
+    def check_service_account(self, username, password):
+        for acc in AC.ACCOUNTS:
+            if acc["username"] == username and acc["password"] == password:
+                return True
+        return False
+
+
+
+    def logout_service_account(self):
+        AC.SERVICE_ACCOUNT_LOGGED = False
+        self.app.stackedWidget.setCurrentWidget(self.app.emplooyee_login_page)
+
+    def search_user(self):
+        self.app.user_info_frame.hide()
+        self.app.generate_id.hide()
+
+        patient_id = self.app.search_user_id.text()
+        if (patient_id != ""):
+            
+            patient_data = ""
+            
+            if (len(patient_id) > 10):
+                patient_data = self.dbh.get_user_by_nic(patient_id)
+                if patient_data and patient_data is not False:
+                    patient_data = self.dbh.get_patient(patient_data)
+            else:
+                patient_data = self.dbh.get_patient(patient_id)
+
+            if (patient_data):
+                self.app.patient_info_frame.show()
+                self.app.close_patient_session.show()
+
+                # form data setting
+                self.app.user_first_name.setText(f'{patient_data["first_name"]}')
+                self.app.user_last_name.setText(f'{patient_data["last_name"]}')
+                self.app.user_full_name.setText(f'{patient_data["full_name"]}')
+                self.app.user_nic.setText(f'{patient_data["nic"]}')
+                self.app.user_uid.setText(f'{patient_data["uid"]}')
+                self.app.user_district.setText(f'{patient_data["district"]}')
+                self.app.user_email.setText(f'{patient_data["email"]}')
+
+                self.app.user_info_frame.show()
+                self.app.generate_id.show()
+
+
+            elif patient_data is False:
+                self.helper.show_warning_popup("Did not found the user. Try again", "Invalid user ID")
+        else:
+            self.helper.show_warning_popup("Did not found the user. Try again", "Invalid user ID")
+
 
     def search_patient(self):
         patient_id = self.app.patient_id_input.text()
@@ -112,7 +193,6 @@ class Process:
                 # form data setting
                 self.app.patient_name.setText(f'{patient_data["first_name"]} {patient_data["last_name"]}')
                 self.app.patient_full_name.setText(f'{patient_data["full_name"]}')
-                self.app.nic.setText(f'{patient_data["nic"]}')
                 self.app.nic.setText(f'{patient_data["nic"]}')
                 age = datetime.now().year - int(patient_data["dob"].split("-")[0])
                 self.app.age.setText(f'{age}')
@@ -309,6 +389,28 @@ class Process:
         self.app.patient_id_input.setText(str(AC.QR_SCANNER))
         self.search_patient()
         AC.QR_SCANNER = ""
+    
+    
+    def open_scanner_search_user(self):
+        qr_scanner = QRScanner()
+        qr_scanner.exec_()
+        print(f"FINAL: {AC.QR_SCANNER}")
+        self.app.search_user_id.setText(str(AC.QR_SCANNER))
+        self.search_user()
+        AC.QR_SCANNER = ""
+
+    def genarate_id(self):
+        uid_code = self.app.user_uid.text()
+        first_name = self.app.user_first_name.text()
+        last_name = self.app.user_last_name.text()
+
+        self.helper.generate_id(uid_code, first_name, last_name)
+        self.helper.info("User ID generated!")
+        
+        self.app.user_info_frame.hide()
+        self.app.generate_id.hide()
+        self.app.search_user_id.setText("")
+        
 
     
     def openFileDialog(self):

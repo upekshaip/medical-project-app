@@ -181,3 +181,17 @@ class DB:
             self.helper.show_warning_popup(message="No internet connection. Please check your network.",warn="No internet connection")
             return False
 
+    def get_user_by_nic(self, nic):
+        try:
+            data = self.db.child(f"{AC.DB_PATH}/nic/{nic}").get().val()
+            if type(data) == list:
+                return False
+            
+            elif data:
+                return data
+            
+            else:
+                return False
+        except:
+            self.helper.show_warning_popup(AC.INTERNET_ERR_MSG, AC.INTERNET_ERR_WARN)
+            return None
