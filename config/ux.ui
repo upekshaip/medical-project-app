@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>866</width>
-    <height>699</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -166,7 +166,7 @@ QProgressBar {
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="doctor_login_page">
        <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -4098,7 +4098,7 @@ QProgressBar {
                 <x>0</x>
                 <y>0</y>
                 <width>672</width>
-                <height>597</height>
+                <height>598</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_23" stretch="0,1,0,0">

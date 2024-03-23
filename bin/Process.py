@@ -1,24 +1,16 @@
-from PyQt5.QtWidgets import QTreeView, QAbstractItemView, QApplication, QTreeWidgetItem, QTableWidgetItem, QCheckBox, QTreeWidget, QSizePolicy
-from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox, QLabel, QPushButton, QVBoxLayout, QHBoxLayout,QVBoxLayout, QFrame, QComboBox
-from PyQt5.QtGui import QPixmap, QImage, QDesktopServices, QIcon
-from PyQt5.QtCore import Qt, QUrl, pyqtSignal, QDate
-import random
-import string
+from PyQt5.QtWidgets import QTreeWidgetItem, QTableWidgetItem
+from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QVBoxLayout,QVBoxLayout
+from PyQt5.QtCore import QDate
 from datetime import datetime
 import os
-import math
-import time
 import json
 from bin.Config import AppConfig as AC
 from bin.Helper import Helper
 from bin.FDB import DB
 from bin.Scanner import QRScanner
-from openpyxl import Workbook
-from PyQt5.QtWidgets import QFrame, QLabel, QScrollArea, QTextBrowser
-from openpyxl.chart import PieChart, Reference
-import sys
+from PyQt5.QtWidgets import QLabel, QTextBrowser
 import requests
-from PyQt5.QtWidgets import QApplication, QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QWidget, QTreeWidgetItem, QTextBrowser, QFileDialog
+from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QLabel, QVBoxLayout, QWidget, QTreeWidgetItem, QTextBrowser, QFileDialog
 from PyQt5.QtGui import QPixmap
 from io import BytesIO
 import webbrowser

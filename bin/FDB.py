@@ -1,13 +1,9 @@
 import time
 import pyrebase
 import math
-from datetime import datetime
 from bin.Cred import Cred
 from bin.Config import AppConfig as AC
 from bin.Helper import Helper
-from requests.exceptions import ConnectionError
-import random
-import string
 
 class DB:
 

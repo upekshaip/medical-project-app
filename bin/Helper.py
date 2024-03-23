@@ -1,15 +1,13 @@
 import random
 import string
 import pyqrcode
-import numpy as np
-import cv2
 import pyqrcode
 import os
 import math
 import json
 from bin.Config import AppConfig as AC
-from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox
-from PyQt5.QtGui import QPixmap, QImage, QDesktopServices, QIcon
+from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtGui import QIcon
 from PIL import Image, ImageDraw, ImageFont
 from datetime import datetime
 import qrcode

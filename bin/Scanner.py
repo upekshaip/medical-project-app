@@ -3,8 +3,6 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt, QTimer
 import cv2
 import numpy as np
-import os
-import json
 from pyzbar.pyzbar import decode
 from PyQt5.QtWidgets import QWidget, QLabel,QVBoxLayout, QVBoxLayout
 from PyQt5.QtGui import QPixmap, QImage, QIcon

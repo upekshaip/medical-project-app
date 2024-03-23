@@ -1,9 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow, QApplication, QTextEdit, QFileIconProvider, QDialog, QLineEdit, QTableWidgetItem, QLabel, QTreeWidgetItem
-from PyQt5.QtCore import QUrl, Qt, QDate
-from PyQt5.QtGui import QDesktopServices, QPixmap
-from bin.Config import AppConfig as AC
 from bin.Process import Process
-from datetime import date
 
 class RunTiime():
 
