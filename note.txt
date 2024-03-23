@@ -1,0 +1,5 @@
+1. Clone your repository
+2. Copy and paste the following commands
+
+python -m venv env
+pip install -r requirements.txt

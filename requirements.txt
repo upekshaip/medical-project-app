@@ -7,5 +7,4 @@ PyQRCode
 pyzbar
 pypng
 matplotlib
-openpyxl
 qrcode
