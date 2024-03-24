@@ -22,6 +22,3 @@ if __name__ == "__main__":
     ui = MainUI()
     ui.show()
     app.exec_()
-
-
-# V774Z7YC4M
