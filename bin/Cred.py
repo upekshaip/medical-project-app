@@ -1,11 +1,10 @@
 class Cred:
-    
     FIREBASE_CONF = {
-        'apiKey': "AIzaSyACS41aaG0cKiSAUP8JXf5j5nh_4lN1QbM",
-        'authDomain': "medsync-af55a.firebaseapp.com",
-        'projectId': "medsync-af55a",
-        'storageBucket': "medsync-af55a.appspot.com",
-        'messagingSenderId': "93442721481",
-        'appId': "1:93442721481:web:d80fbcdbf12ca9a8cb6f18",
-        'databaseURL': "https://medsync-af55a-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        'apiKey': "AIzaSyCXqFAH0pu-fyVqiIZz9BDhzSh3FJMpWhs",
+        'authDomain': "medsync-c1dbc.firebaseapp.com",
+        'projectId': "medsync-c1dbc",
+        'storageBucket': "medsync-c1dbc.appspot.com",
+        'messagingSenderId': "232270548251",
+        'appId': "1:232270548251:web:7ea59699553e992c8917be",
+        'databaseURL': "https://medsync-c1dbc-default-rtdb.asia-southeast1.firebasedatabase.app/"
     }

@@ -3,8 +3,8 @@ class AppConfig(object):
     DB_NAME = "MedSync"
     DB_PATH = f"app/{DB_NAME}/"
 
-    IMAGE_URL_PATH = "http://localhost/web/kusal/img/"
-    IMAGE_UPLOAD_API_URL = "http://localhost/web/kusal/includes/api.inc.php"
+    IMAGE_URL_PATH = "https://medsync0.000webhostapp.com/img/"
+    IMAGE_UPLOAD_API_URL = "https://medsync0.000webhostapp.com/includes/api.inc.php"
 
     MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     REPORT_TYPES = ["Prescription","Referral Letter", "Diagnosis","Treatment Plan", "Lab Test Result", "Surgery","Imaging Test Result", "Therapy Session Notes", "Follow-up Instructions", "Medical Procedure", "Medical History", "Immunization Record"]

@@ -164,6 +164,8 @@ class Process:
                 self.app.user_uid.setText(f'{patient_data["uid"]}')
                 self.app.user_district.setText(f'{patient_data["district"]}')
                 self.app.user_email.setText(f'{patient_data["email"]}')
+                self.app.relationship.setText(f'{patient_data["relationship"]}')
+                self.app.occupation.setText(f'{patient_data["occupation"]}')
 
                 self.app.user_info_frame.show()
                 self.app.generate_id.show()

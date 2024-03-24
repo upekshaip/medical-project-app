@@ -1,6 +1,4 @@
 import sys
-# from bin.Runtime import RunTiime as RT
-# pyqt
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import *
@@ -24,3 +22,6 @@ if __name__ == "__main__":
     ui = MainUI()
     ui.show()
     app.exec_()
+
+
+# V774Z7YC4M
