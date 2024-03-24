@@ -830,8 +830,8 @@ QProgressBar {
                   <property name="geometry">
                    <rect>
                     <x>0</x>
-                    <y>-214</y>
-                    <width>657</width>
+                    <y>0</y>
+                    <width>379</width>
                     <height>1056</height>
                    </rect>
                   </property>
@@ -4601,7 +4601,7 @@ QProgressBar {
           </font>
          </property>
          <property name="text">
-          <string>Developed by CGP - Group CN</string>
+          <string>Developed by CGP - Group 23</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
