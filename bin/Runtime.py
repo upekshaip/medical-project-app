@@ -1,4 +1,7 @@
 from bin.Process import Process
+from bin.Config import AppConfig as AC
+from PyQt5.QtCore import QUrl
+from PyQt5.QtGui import QDesktopServices
 
 class RunTiime():
 
@@ -18,6 +21,7 @@ class RunTiime():
         # LOG IN
         self.app.login_btn.clicked.connect(lambda: self.process.doctor_login())
         self.app.service_login_btn.clicked.connect(lambda: self.process.service_login())
+        self.app.doc_register.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(AC.DOCTOR_REGISTRATION_LINK)))
         self.app.doc_switch_btn.clicked.connect(lambda: self.app.stackedWidget.setCurrentWidget(self.app.doctor_login_page))
         self.app.switch_service_btn.clicked.connect(lambda: self.app.stackedWidget.setCurrentWidget(self.app.emplooyee_login_page))
         

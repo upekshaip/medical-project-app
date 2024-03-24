@@ -5,6 +5,7 @@ class AppConfig(object):
 
     IMAGE_URL_PATH = "https://medsync0.000webhostapp.com/img/"
     IMAGE_UPLOAD_API_URL = "https://medsync0.000webhostapp.com/includes/api.inc.php"
+    DOCTOR_REGISTRATION_LINK = "https://medsync0.000webhostapp.com/doctor_register.php"
 
     MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     REPORT_TYPES = ["Prescription","Referral Letter", "Diagnosis","Treatment Plan", "Lab Test Result", "Surgery","Imaging Test Result", "Therapy Session Notes", "Follow-up Instructions", "Medical Procedure", "Medical History", "Immunization Record"]
@@ -33,7 +34,7 @@ class AppConfig(object):
     
     # EMAIL STM
     EMAIL = "medsync0@gmail.com"
-    EMAIL_PASSWORD = "cjusazqsyoavqkgy"
+    EMAIL_PASSWORD = "qhojoceerppbgqwl"
     EMAIL_SUBJECT = "Your MedSync User ID Card"
 
     # Admin Accounts

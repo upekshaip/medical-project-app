@@ -166,7 +166,7 @@ QProgressBar {
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="doctor_login_page">
        <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -427,6 +427,24 @@ QProgressBar {
                 </property>
                 <property name="text">
                  <string>Login</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="doc_register">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Register</string>
                 </property>
                </widget>
               </item>
